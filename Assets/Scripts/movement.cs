@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 3;
+    [SerializeField] private float _speed;
+    [SerializeField] private GameManager _gameManager;
 
-    void Update()
-    {
-        transform.Translate(_speed * Time.deltaTime * -1, 0, 0);
-    }
+    private Object[] _objects;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.TryGetComponent<killObj>(out killObj killer))
-            Destroy(this.gameObject);
+        _objects = FindObjectsOfType<Object>();
+        _speed = _gameManager.GetSpeed();
+
+        foreach (var obj in _objects)
+        {
+            obj.transform.Translate(_speed * Time.deltaTime * -1, 0, 0);
+        }
     }
 }

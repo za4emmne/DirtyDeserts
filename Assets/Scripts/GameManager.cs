@@ -4,22 +4,54 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private player _player;
-    [SerializeField] private TNT _tnt;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private PlayerGetScore _player;
+    //[SerializeField] private Movement[] _movement;
+    [SerializeField] private PlayerBoomTNT _playerBoomTNT;
+    [SerializeField] private int _speed;
+    [SerializeField] private int _score;
+
+    private bool _isGameOver;
+
+    private void Start()
     {
-        
+        //_movement = FindObjectsOfType<Movement>();
+        _score = 0;
+        _speed = 3;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        PlusScore();
+        BoomTNT();
+
     }
 
-    private void GameOver()
+    public int GetSpeed()
     {
-       
+        return _speed;
+    }
+
+    public bool GameOver()
+    {
+        return _isGameOver;
+    }
+
+    private void BoomTNT()
+    {
+        if (_playerBoomTNT.Boom())
+        {
+            _isGameOver = true;
+            _speed = 0;
+        }
+        else
+        {
+            _isGameOver = false;
+        }
+    }
+
+    private void PlusScore()
+    {
+            _score = _player.GetScore();
+            //Debug.Log(_score);   
     }
 }

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1223660048215757513}
   - component: {fileID: 1223660048215757514}
-  - component: {fileID: 1223660048215757515}
   - component: {fileID: 2166283353780436825}
+  - component: {fileID: 6585041413726844487}
+  - component: {fileID: 8917790802668142919}
   m_Layer: 0
   m_Name: Small Cloud 2
   m_TagString: Untagged
@@ -86,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1223660048215757515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223660048215757508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78093829588ad1748a42360d5dcf9a77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1.21
 --- !u!61 &2166283353780436825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,3 +113,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.33, y: 0.35}
   m_EdgeRadius: 0
+--- !u!114 &6585041413726844487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223660048215757508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0de37a4e5898845833b8af8730cfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+--- !u!114 &8917790802668142919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223660048215757508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe10a9a1bac6e74fa7736d72198dacc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
