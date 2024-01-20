@@ -21,7 +21,7 @@ public class InstantiateObject : MonoBehaviour
 
     private void Update()
     {
-        _isGameOver = _gameManager.GameOver();
+        _isGameOver = _gameManager.StopInstantiate();
     }
 
     private IEnumerator Spawn()
