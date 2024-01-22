@@ -6,10 +6,13 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private GameObject _menu;
     [SerializeField] private GameObject _autors;
-    [SerializeField] private Text _bestScore;
+    [SerializeField] private Text _highScoreText;
+    [SerializeField] private GameManager _gameManager;
 
     private void Start()
     {
+        _gameManager = GetComponent<GameManager>();
+        _highScoreText.text = "Highscore: " + _gameManager.GetHighscore().ToString();
         _autors.SetActive(false);
     }
 
