@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text _scoreText;
     [SerializeField] private float _nextStepScore = 4;
     [SerializeField] private int _highScore;
-    //[SerializeField] private Text _highScoreText;
+    [SerializeField] private GameObject _gameOver;
 
     private bool _isGameOver;
     private bool _isStopInstantiate;
@@ -82,12 +82,14 @@ public class GameManager : MonoBehaviour
     {
         if (_playerBoomTNT.Boom())
         {
+            _gameOver.SetActive(true);
             _isStopInstantiate = true;
             _isGameOver = true;
             _speed = 0;
         }
         else
         {
+            _gameOver.SetActive(false);
             _isGameOver = false;
             _isStopInstantiate = false;
         }

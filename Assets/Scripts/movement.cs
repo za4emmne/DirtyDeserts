@@ -9,6 +9,11 @@ public class Movement : MonoBehaviour
 
     private Object[] _objects;
 
+    private void Start()
+    {
+        _gameManager = GetComponent<GameManager>();
+    }
+
     private void Update()
     {
         _objects = FindObjectsOfType<Object>();
