@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerGetScore _player;
-    //[SerializeField] private GameObject _rulesGame;
-    //[SerializeField] private Movement[] _movement;
+    [SerializeField] private GameObject _rulesGame;
     [SerializeField] private PlayerBoomTNT _playerBoomTNT;
     [SerializeField] private float _speed;
     [SerializeField] private int _score;
@@ -36,9 +36,20 @@ public class GameManager : MonoBehaviour
         //    _speed = 3;
         //}
 
+        HideManagement();
         AddScore();
         BoomTNT();
         AddSpeed();
+    }
+
+    public void RestartPlayScene()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void StartMenuScene()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public float GetSpeed()
@@ -64,6 +75,12 @@ public class GameManager : MonoBehaviour
     public int GetHighscore()
     {
         return _highScore;
+    }
+
+    private void HideManagement()
+    {
+        if(_score > 1)
+        _rulesGame.SetActive(false);
     }
 
     private void AddSpeed()
