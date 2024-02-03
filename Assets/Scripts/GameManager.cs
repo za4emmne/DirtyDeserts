@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         //    _speed = 3;
         //}
 
-        HideManagement();
+        HideRules();
         AddScore();
         BoomTNT();
         AddSpeed();
@@ -52,9 +52,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public float GetSpeed()
+    public int GetScore
     {
-        return _speed;
+        get { return _score; }
+    }
+
+    public float GetStepScore
+    {
+        get { return _nextStepScore; }
+    }
+
+    public float GetSpeed
+    {
+        get { return _speed; }
     }
 
     public bool GameOver()
@@ -67,17 +77,17 @@ public class GameManager : MonoBehaviour
         return _isStopInstantiate;
     }
 
-    public float GetSpeedStep()
-    {
-        return _speedStep;
-    }
+    //public float GetSpeedStep()
+    //{
+    //    return _speedStep;
+    //}
 
     public int GetHighscore()
     {
         return _highScore;
     }
 
-    private void HideManagement()
+    private void HideRules()
     {
         if(_score > 1)
         _rulesGame.SetActive(false);
@@ -99,6 +109,7 @@ public class GameManager : MonoBehaviour
     {
         if (_playerBoomTNT.Boom())
         {
+            Destroy(_player.gameObject);
             _gameOver.SetActive(true);
             _isStopInstantiate = true;
             _isGameOver = true;

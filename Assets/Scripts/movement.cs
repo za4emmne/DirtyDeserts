@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -17,7 +15,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         _objects = FindObjectsOfType<Object>();
-        _speed = _gameManager.GetSpeed();
+        _speed = _gameManager.GetSpeed;
 
         foreach (var obj in _objects)
         {

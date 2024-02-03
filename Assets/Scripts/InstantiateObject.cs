@@ -11,13 +11,14 @@ public class InstantiateObject : MonoBehaviour
     [SerializeField] private float _maxDelay;
     [SerializeField] private float _devationPositionY = 0;
 
-    private float _spawnTime;
+    [SerializeField] private float _spawnTime;
     private bool _isGameOver;
+    private float _step = 0.5f;
     //private float _currentTimeSpawn;
 
     private void Start()
     {
-        //_currentTimeSpawn = _gameManager.GetSpeedStep();
+        //_currentTimeSpawn = _gameManager.GetSpeed();
         StartCoroutine(Spawn());
     }
 
@@ -44,7 +45,15 @@ public class InstantiateObject : MonoBehaviour
 
             //_minDelay -= speedStep;
             //_maxDelay -= speedStep;
+
             _spawnTime = Random.Range(_minDelay, _maxDelay);
+
+            //if (_gameManager.GetStepScore == _gameManager.GetScore)
+            //{
+            //    _spawnTime -= 3;
+            //    _step += 0.3f;
+            //}
+
             var waitForSeconds = new WaitForSeconds(_spawnTime);
 
             GameObject gameObject = Instantiate(_templates[Random.Range(0, _templates.Length)],
@@ -52,6 +61,5 @@ public class InstantiateObject : MonoBehaviour
 
             yield return waitForSeconds;
         }
-
     }
 }
