@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(GameManager))]
+
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;

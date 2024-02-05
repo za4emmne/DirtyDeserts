@@ -109,7 +109,6 @@ public class GameManager : MonoBehaviour
     {
         if (_playerBoomTNT.Boom())
         {
-            Destroy(_player.gameObject);
             _gameOver.SetActive(true);
             _isStopInstantiate = true;
             _isGameOver = true;

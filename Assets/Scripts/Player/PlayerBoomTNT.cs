@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBoomTNT : MonoBehaviour
@@ -16,6 +14,7 @@ public class PlayerBoomTNT : MonoBehaviour
         if (collision.TryGetComponent(out TNT tnt))
         {
             _isBoom = true;
+            //this.gameObject.SetActive(false);
         }
     }
 

@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 
 public class PlayerJumping : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _jumpForce;
+    private const string AnimationRun = "Ground";
 
+    private Rigidbody2D _rigidbody2D;
+    private float _jumpForce = 500;
     private bool _isGround;
     private Animator _animator;
+    private AudioSource _audio;
 
 
     private void Start()
     {
+        _audio = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -36,6 +41,8 @@ public class PlayerJumping : MonoBehaviour
         if (collision.collider.TryGetComponent(out Flour flour))
         {
             _isGround = true;
+            _audio.Play();
+            //_animator.SetBool(AnimationRun)
         }
     }
 
