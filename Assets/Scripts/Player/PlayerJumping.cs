@@ -41,8 +41,7 @@ public class PlayerJumping : MonoBehaviour
         if (collision.collider.TryGetComponent(out Flour flour))
         {
             _isGround = true;
-            _audio.Play();
-            //_animator.SetBool(AnimationRun)
+            //_audio.Play();
         }
     }
 

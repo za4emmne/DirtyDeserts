@@ -1,18 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerGetScore _player;
-    [SerializeField] private GameObject _rulesGame;
     [SerializeField] private PlayerBoomTNT _playerBoomTNT;
     [SerializeField] private float _speed;
     [SerializeField] private int _score;
-    [SerializeField] private Text _scoreText;
     [SerializeField] private float _nextStepScore = 4;
     [SerializeField] private int _highScore;
-    [SerializeField] private GameObject _gameOver;
 
     private bool _isGameOver;
     private bool _isStopInstantiate;
@@ -36,7 +32,7 @@ public class GameManager : MonoBehaviour
         //    _speed = 3;
         //}
 
-        HideRules();
+        //HideRules();
         AddScore();
         BoomTNT();
         AddSpeed();
@@ -67,6 +63,11 @@ public class GameManager : MonoBehaviour
         get { return _speed; }
     }
 
+    public int GetHighscore
+    {
+         get { return _highScore; }
+    }
+
     public bool GameOver()
     {
         return _isGameOver;
@@ -82,16 +83,11 @@ public class GameManager : MonoBehaviour
     //    return _speedStep;
     //}
 
-    public int GetHighscore()
-    {
-        return _highScore;
-    }
-
-    private void HideRules()
-    {
-        if(_score > 1)
-        _rulesGame.SetActive(false);
-    }
+    //private void HideRules()
+    //{
+    //    if(_score > 1)
+    //    _rulesGame.SetActive(false);
+    //}
 
     private void AddSpeed()
     {
@@ -109,14 +105,14 @@ public class GameManager : MonoBehaviour
     {
         if (_playerBoomTNT.Boom())
         {
-            _gameOver.SetActive(true);
+            //_gameOver.SetActive(true);
             _isStopInstantiate = true;
             _isGameOver = true;
             _speed = 0;
         }
         else
         {
-            _gameOver.SetActive(false);
+            //_gameOver.SetActive(false);
             _isGameOver = false;
             _isStopInstantiate = false;
         }
@@ -125,7 +121,7 @@ public class GameManager : MonoBehaviour
     private void AddScore()
     {
         _score = _player.GetScore();
-        _scoreText.text = "Score: " + _score.ToString();
+        //_scoreText.text = "Score: " + _score.ToString();
         GetHighScore();
     }
 

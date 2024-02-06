@@ -758,13 +758,13 @@ GameObject:
   m_Component:
   - component: {fileID: 539985764}
   - component: {fileID: 539985763}
+  - component: {fileID: 539985766}
   - component: {fileID: 539985769}
   - component: {fileID: 539985768}
   - component: {fileID: 539985767}
   - component: {fileID: 539985762}
   - component: {fileID: 539985761}
   - component: {fileID: 539985765}
-  - component: {fileID: 539985766}
   - component: {fileID: 539985770}
   m_Layer: 7
   m_Name: Player
@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b952b1144ab76924daa9f409ccf74feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 642652452}
 --- !u!114 &539985767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,7 +1157,7 @@ GameObject:
   - component: {fileID: 547040510}
   - component: {fileID: 547040509}
   m_Layer: 5
-  m_Name: Hand Text
+  m_Name: Game Rules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1514,6 +1515,7 @@ GameObject:
   - component: {fileID: 642652451}
   - component: {fileID: 642652452}
   - component: {fileID: 642652453}
+  - component: {fileID: 642652454}
   m_Layer: 0
   m_Name: GameGod
   m_TagString: Untagged
@@ -1550,14 +1552,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 539985768}
-  _rulesGame: {fileID: 547040507}
   _playerBoomTNT: {fileID: 539985769}
   _speed: 3
   _score: 0
-  _scoreText: {fileID: 926723249}
   _nextStepScore: 4
   _highScore: 0
-  _gameOver: {fileID: 1896956675}
 --- !u!114 &642652453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,8 +1569,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78093829588ad1748a42360d5dcf9a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
   _gameManager: {fileID: 0}
+--- !u!114 &642652454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642652450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d806440c8fa6b46bbe5dc10d642d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rulesGame: {fileID: 547040507}
+  _scoreText: {fileID: 926723249}
+  _gameOver: {fileID: 1896956675}
 --- !u!1 &682087928
 GameObject:
   m_ObjectHideFlags: 0

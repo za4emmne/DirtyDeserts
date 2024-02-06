@@ -3,11 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(GameManager))]
 
 public class Movement : MonoBehaviour
-{
-    [SerializeField] private float _speed;
+{  
     [SerializeField] private GameManager _gameManager;
 
     private Object[] _objects;
+    private float _speed;
 
     private void Start()
     {
