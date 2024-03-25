@@ -1,24 +1,24 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
 
 public class PlayerJumping : MonoBehaviour
 {
-    private const string AnimationRun = "Ground";
+    public event Action AnimationJumpPlayed;
+
+    [SerializeField] private PlayerBoomTNT _playerBoomTNT;
 
     private Rigidbody2D _rigidbody2D;
-    private float _jumpForce = 500;
+    [SerializeField] private float _jumpForce = 500;
     private bool _isGround;
-    private Animator _animator;
     private AudioSource _audio;
 
 
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
-        _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -27,21 +27,31 @@ public class PlayerJumping : MonoBehaviour
         Jump();
     }
 
+    private void OnEnable()
+    {
+        _playerBoomTNT.PlayerBoomed += AddForce;
+    }
+
+    private void OnDisable()
+    {
+        _playerBoomTNT.PlayerBoomed -= AddForce;
+    }
+
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGround)
         {
-            _animator.SetTrigger("jump");
-            _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+            AnimationJumpPlayed?.Invoke();
+            AddForce();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.TryGetComponent(out Flour flour))
         {
             _isGround = true;
-            //_audio.Play();
+            _audio.Play();
         }
     }
 
@@ -51,5 +61,10 @@ public class PlayerJumping : MonoBehaviour
         {
             _isGround = false;
         }
+    }
+
+    private void AddForce()
+    {
+        _rigidbody2D.AddForce(Vector2.up * _jumpForce);
     }
 }

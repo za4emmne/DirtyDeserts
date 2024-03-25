@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTNT : MonoBehaviour
 {
-    [SerializeField] private TNT _bomb; 
-    [SerializeField] private float _minTimeBetweenRespawn;
-    [SerializeField] private float _maxTimeBetweenRespawn;
+    [SerializeField] private TNT _bomb;
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private float _minDeviationY;
+    [SerializeField] private float _maxDeviationY;
 
-    private float _spawnTime;
-
-
-    void Update()
+    private void OnEnable()
     {
-        if (Time.time > _spawnTime)
-        {
-             var tnt = Instantiate(_bomb, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            _spawnTime = Time.time + Random.Range(_minTimeBetweenRespawn, _maxTimeBetweenRespawn);
-        }
+        _gameManager.SpawnTimeChanged += SpawnRandomTNT;
     }
 
-       
+    private void OnDisable()
+    {
+        _gameManager.SpawnTimeChanged -= SpawnRandomTNT;
+    }
+
+    private void SpawnRandomTNT()
+    {
+        float deviationY = Random.Range(_minDeviationY, _maxDeviationY);
+        var tnt = Instantiate(_bomb, new Vector3(transform.position.x + deviationY, transform.position.y, transform.position.z), Quaternion.identity);
+    }
 }

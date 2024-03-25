@@ -1,28 +1,25 @@
 using UnityEngine;
+using System;
 
 public class PlayerBoomTNT : MonoBehaviour
 {
-    private bool _isBoom;
+    [SerializeField] private AudioClip _boomSound;
 
-    public bool Boom()
+    public event Action PlayerBoomed;
+
+    private AudioSource _audioSource;
+
+    private void Start()
     {
-        return _isBoom;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out TNT tnt))
         {
-            _isBoom = true;
-            //this.gameObject.SetActive(false);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out TNT tnt))
-        {
-            _isBoom = false;
+            PlayerBoomed?.Invoke();
+            _audioSource.PlayOneShot(_boomSound);
         }
     }
 }
