@@ -6,15 +6,14 @@ using System;
 
 public class PlayerJumping : MonoBehaviour
 {
-    public event Action AnimationJumpPlayed;
-
     [SerializeField] private PlayerBoomTNT _playerBoomTNT;
+    [SerializeField] private float _jumpForce = 500;
 
     private Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _jumpForce = 500;
     private bool _isGround;
     private AudioSource _audio;
 
+    public event Action AnimationJumpPlayed;
 
     private void Start()
     {
@@ -35,6 +34,11 @@ public class PlayerJumping : MonoBehaviour
     private void OnDisable()
     {
         _playerBoomTNT.PlayerBoomed -= AddForce;
+    }
+
+    public void AddJumpForce(float addJumpForce)
+    {
+        _jumpForce += addJumpForce;
     }
 
     private void Jump()

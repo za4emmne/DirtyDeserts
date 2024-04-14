@@ -9,12 +9,14 @@ public class PlayMenu : MonoBehaviour
     [SerializeField] private GameObject _rulesGame;
     [SerializeField] private Text _scoreText;
     [SerializeField] private GameObject _gameOver;
+    [SerializeField] private GameObject _pauseMenu;
 
     private ScoreManager _scoreManager;
     private int _score;
 
     private void Start()
     {
+        _pauseMenu.SetActive(false);
         _gameOver.SetActive(false);
         _scoreManager = GetComponent<ScoreManager>();
     }
@@ -34,6 +36,18 @@ public class PlayMenu : MonoBehaviour
     private void OnDisable()
     {
         _playerBoomed.PlayerBoomed -= GameOver;
+    }
+
+    public void StartPause()
+    {
+        _pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Continue()
+    {
+        _pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 
     private void HideRules()

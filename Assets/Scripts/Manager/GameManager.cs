@@ -31,17 +31,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-      
     }
 
     public void RestartPlayScene()
     {
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1;
     }
 
     public void StartMenuScene()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
@@ -60,6 +61,8 @@ public class GameManager : MonoBehaviour
         _speedStep = UnityEngine.Random.Range(0.5f, 1f);
 
         _speed += _speedStep;
+        _playerBoomed.GetComponent<Rigidbody2D>().gravityScale += 0.07f;
+        _playerBoomed.GetComponent<PlayerJumping>().AddJumpForce(7);
         SpawnTimeChanged?.Invoke();
     }
 

@@ -1,13 +1,15 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _menu;
-    [SerializeField] private GameObject _autors;
+    [SerializeField] private GameObject _shop;
     [SerializeField] private Text _highScoreText;
     [SerializeField] private Text _coinsInWallet;
+    [SerializeField] private Text _shopText;
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private Wallet _wallet;
     
@@ -17,7 +19,7 @@ public class StartMenu : MonoBehaviour
     {
         ChangeHighSCore();
         ChangeCoins();
-        _autors.SetActive(false);
+        _shop.SetActive(false);
     }
 
     public void Play()
@@ -25,10 +27,14 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void Autors()
+    public void ShopActive()
     {
+        //StartCoroutine(Shop());
         _menu.SetActive(false);
-        _autors.SetActive(true);
+        _shop.SetActive(true);
+        _shopText.color = Color.Lerp(Color.clear, Color.black, 1f);
+
+        _shop.GetComponent<Animator>().SetTrigger("Idle");
     }
 
     public void Exit()
@@ -36,9 +42,9 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void AutorsExit()
+    public void ShopExit()
     {
-        _autors.SetActive(false);
+        _shop.SetActive(false);
         _menu.SetActive(true);
     }
 
@@ -51,4 +57,18 @@ public class StartMenu : MonoBehaviour
     {
         _coinsInWallet.text = _wallet.Coin.ToString() + " coins";
     }
+
+    //private IEnumerator Shop()
+    //{
+    //    while (true)
+    //    {
+    //        _menu.SetActive(false);
+    //        _shop.SetActive(true);
+
+    //        var waitForSeconds = new WaitForSeconds(0.1f);
+    //        yield return waitForSeconds;
+
+    //        _shop.GetComponent<Animator>().SetTrigger("Idle");
+    //    }
+    //}
 }
