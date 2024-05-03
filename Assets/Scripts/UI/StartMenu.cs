@@ -12,8 +12,8 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private Text _shopText;
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private Wallet _wallet;
-    
 
+    private string _coinName;
 
     private void Start()
     {
@@ -50,12 +50,12 @@ public class StartMenu : MonoBehaviour
 
     public void ChangeHighSCore()
     {
-        _highScoreText.text = "Highscore: " + _scoreManager.HighScore.ToString();
+        _highScoreText.text = "Рекорд: " + _scoreManager.HighScore.ToString();
     }
 
     public void ChangeCoins()
     {
-        _coinsInWallet.text = _wallet.Coin.ToString() + " coins";
+        _coinsInWallet.text = _wallet.Coin.ToString() + "";
     }
 
     //private IEnumerator Shop()

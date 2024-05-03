@@ -5,15 +5,17 @@ using System;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerBoomTNT _playerBoomed;
+    [SerializeField] private PlayerJumping _playerJumping;
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private AudioSource _boomAudio;
 
     [Header("Мониторинг данных")]
     [SerializeField] private float _speed;
- 
+
     private bool _isGameOver;
     private bool _isStopInstantiate;
     private float _speedStep;
+    private float _playerGravityScale;
 
     public event Action SpawnTimeChanged;
 
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _playerGravityScale = _playerBoomed.GetComponent<Rigidbody2D>().gravityScale;
         _isStopInstantiate = true;
         _speed = 3;
         _speedStep = 0;
@@ -50,7 +53,6 @@ public class GameManager : MonoBehaviour
         _playerBoomed.PlayerBoomed += BoomTNT;
         _scoreManager.StepScoreChanged += AddSpeed;
     }
-
     private void OnDisable()
     {
         _scoreManager.StepScoreChanged -= AddSpeed;
@@ -58,11 +60,14 @@ public class GameManager : MonoBehaviour
 
     private void AddSpeed()
     {
-        _speedStep = UnityEngine.Random.Range(0.5f, 1f);
+        if (_speed < 7)
+            _speedStep = UnityEngine.Random.Range(0.5f, 1f);
+        else
+            _speedStep = UnityEngine.Random.Range(0.1f, 0.5f);
 
         _speed += _speedStep;
-        _playerBoomed.GetComponent<Rigidbody2D>().gravityScale += 0.07f;
-        _playerBoomed.GetComponent<PlayerJumping>().AddJumpForce(7);
+        _playerGravityScale += 0.07f;
+        _playerJumping.AddJumpForce(7);
         SpawnTimeChanged?.Invoke();
     }
 
